@@ -2,7 +2,7 @@
   "name": "slim-blob-store",
   "version": "0.1.0",
   "description": "Blob store that will read from a remote blob store and cache it to a local one",
-  "main": "dist/index.js",
+  "main": "lib/index.js",
   "dependencies": {
     "@justinbeckwith/duplexify": "^4.0.0",
     "logdown": "^3.3.0",
@@ -16,7 +16,7 @@
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "test": "tsc && node dist/test.js"
+    "test": "tsc && node lib/test.js"
   },
   "repository": {
     "type": "git",
@@ -26,7 +26,11 @@
     "blobs",
     "slim"
   ],
-  "author": "Jules Amosah",
+  "author": {
+    "name": "Jules Amosah",
+    "email": "teomik129@gmail.com",
+    "url": "https://github.com/Teomik129"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Teomik129/slim-blob-store/issues"

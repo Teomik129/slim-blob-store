@@ -3,20 +3,23 @@
   "version": "0.1.0",
   "description": "Blob store that will read from a remote blob store and cache it to a local one",
   "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "dependencies": {
     "@justinbeckwith/duplexify": "^4.0.0",
-    "logdown": "^3.3.0",
+    "logdown": "^3.3.1",
     "pump": "^3.0.0"
   },
   "devDependencies": {
-    "@types/node": "^13.7.7",
+    "@types/node": "^13.9.0",
     "@types/tape": "^4.2.34",
     "abstract-blob-store": "^3.3.5",
-    "tape": "^2.14.0",
+    "tape": "^4.13.2",
     "typescript": "^3.8.3"
   },
   "scripts": {
-    "test": "tsc && node lib/test.js"
+    "compile": "tsc",
+    "test": "node ./lib/test.js",
+    "prepare": "npm run compile"
   },
   "repository": {
     "type": "git",

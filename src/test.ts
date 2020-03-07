@@ -1,5 +1,5 @@
 import tape from "tape";
-import slim from "./";
+import { slim } from "./";
 import abstractBlobTests from "abstract-blob-store/tests";
 import Mem, { AbstractBlobStore, BlobMetadata } from "abstract-blob-store";
 

@@ -89,5 +89,7 @@ export class Slim implements AbstractBlobStore {
   }
 }
 
-export default (local: AbstractBlobStore, remote: AbstractBlobStore) =>
-  new Slim(local, remote);
+export const slim = (
+  local: AbstractBlobStore,
+  remote: AbstractBlobStore
+): Slim => new Slim(local, remote);

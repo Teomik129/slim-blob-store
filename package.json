@@ -1,33 +1,35 @@
 {
-  "name": "skim-blob-store",
-  "version": "1.1.0",
+  "name": "slim-blob-store",
+  "version": "0.1.0",
   "description": "Blob store that will read from a remote blob store and cache it to a local one",
-  "main": "index.js",
+  "main": "dist/index.js",
   "dependencies": {
-    "debug": "^1.0.4",
-    "duplexify": "^3.1.2",
-    "pump": "^0.3.5"
+    "@justinbeckwith/duplexify": "^4.0.0",
+    "logdown": "^3.3.0",
+    "pump": "^3.0.0"
   },
   "devDependencies": {
-    "abstract-blob-store": "^3.2.0",
-    "tape": "^2.14.0"
+    "@types/node": "^13.7.7",
+    "@types/tape": "^4.2.34",
+    "abstract-blob-store": "^3.3.5",
+    "tape": "^2.14.0",
+    "typescript": "^3.8.3"
   },
   "scripts": {
-    "test": "tape test.js"
+    "test": "tsc && node dist/test.js"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/mafintosh/skim-blob-store"
+    "url": "https://github.com/Teomik129/slim-blob-store"
   },
   "keywords": [
     "blobs",
-    "dat",
-    "skim"
+    "slim"
   ],
-  "author": "Mathias Buus",
+  "author": "Jules Amosah",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/mafintosh/skim-blob-store/issues"
+    "url": "https://github.com/Teomik129/slim-blob-store/issues"
   },
-  "homepage": "https://github.com/mafintosh/skim-blob-store"
+  "homepage": "https://github.com/Teomik129/slim-blob-store"
 }

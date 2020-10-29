@@ -1,6 +1,6 @@
 {
   "name": "slim-blob-store",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Blob store that will read from a remote blob store and cache it to a local one",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

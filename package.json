@@ -1,6 +1,6 @@
 {
   "name": "slim-blob-store",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Blob store that will read from a remote blob store and cache it to a local one",
   "keywords": [
     "blobs",

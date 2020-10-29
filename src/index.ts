@@ -1,5 +1,5 @@
 import pump from "pump";
-import { duplexify } from "@justinbeckwith/duplexify";
+import duplexify from "duplexify";
 import logging from "logdown";
 
 import {
@@ -7,7 +7,7 @@ import {
   BlobKey,
   CreateCallback,
   ExistsCallback,
-  RemoveCallback
+  RemoveCallback,
 } from "abstract-blob-store";
 
 const logger = logging("slim-blob-store");
@@ -63,7 +63,7 @@ export class Slim implements AbstractBlobStore {
           if (err) return dup.destroy(err);
           dup.setReadable(local.createReadStream(meta));
         }),
-        err => {
+        (err) => {
           if (err) return dup.destroy(err); // in case the local doesn't do destroy
         }
       );
@@ -82,7 +82,7 @@ export class Slim implements AbstractBlobStore {
   remove(opts: BlobKey, callback: RemoveCallback = noop): void {
     const { local, remote } = this;
 
-    local.remove(opts, err => {
+    local.remove(opts, (err) => {
       if (err) return callback(err);
       remote.remove(opts, callback);
     });

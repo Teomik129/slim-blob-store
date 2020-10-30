@@ -1,4 +1,4 @@
-import tape from "tape";
+import tape, { Test } from "tape";
 import { slim } from "./";
 import abstractBlobTests from "abstract-blob-store/tests";
 import Mem, { AbstractBlobStore, BlobMetadata } from "abstract-blob-store";
@@ -24,34 +24,35 @@ const common: Common = {
   },
   teardown(_t, _store, _blob, cb) {
     cb();
-  }
+  },
 };
 
 abstractBlobTests(tape, common);
 
-tape("slim", assert => {
+tape("slim", (assert) => {
   const local = mem();
   const remote = mem();
   const blobs = slim(local, remote);
 
-  const slimWrite = (opts: Mem.BlobKey, data: string, callback: () => void) => {
-    blobs
-      .createWriteStream(opts, (err, meta) => {
-        assert.error(err, "no error on create");
-        assert.ok(meta, "created blob");
-        callback();
-      })
-      .end(data);
-  };
+  const slimWrite = (opts: Mem.BlobKey, data: string, t: Test) =>
+    new Promise((resolve) => {
+      blobs
+        .createWriteStream(opts, (err, meta) => {
+          t.error(err, "no error on create");
+          t.ok(meta, "created blob");
+          resolve();
+        })
+        .end(data);
+    });
 
-  assert.test("createWriteStream", t => {
+  assert.test("createWriteStream", (t) => {
     const opts = { key: "crs" };
     const d = "written";
 
-    slimWrite(opts, d, () => {
-      local.createReadStream(opts).once("data", data => {
+    slimWrite(opts, d, t).then(() => {
+      local.createReadStream(opts).once("data", (data) => {
         t.equal(data.toString(), d, "written to local");
-        remote.createReadStream(opts).once("data", data => {
+        remote.createReadStream(opts).once("data", (data) => {
           t.equal(data.toString(), d, "written to remote");
           t.end();
         });
@@ -59,23 +60,23 @@ tape("slim", assert => {
     });
   });
 
-  assert.test("createReadStream", t => {
+  assert.test("createReadStream", (t) => {
     const opts = { key: "crs" };
     const d = "read";
 
-    slimWrite(opts, d, () => {
-      blobs.createReadStream(opts).once("data", data => {
+    slimWrite(opts, d, t).then(() => {
+      blobs.createReadStream(opts).once("data", (data) => {
         t.equal(data.toString(), d, "reads successfully");
         t.end();
       });
     });
   });
 
-  assert.test("exists", t => {
+  assert.test("exists", (t) => {
     const opts = { key: "ex" };
     const d = "exists";
 
-    slimWrite(opts, d, () => {
+    slimWrite(opts, d, t).then(() => {
       blobs.exists(opts, (err, exists) => {
         t.error(err, "no error on exists");
         t.ok(exists, "blob exists");
@@ -84,14 +85,14 @@ tape("slim", assert => {
     });
   });
 
-  assert.test("remove", t => {
+  assert.test("remove", (t) => {
     const opts = { key: "rm" };
     const d = "removed";
 
-    slimWrite(opts, d, () => {
-      blobs.remove(opts, err => {
+    slimWrite(opts, d, t).then(() => {
+      blobs.remove(opts, (err) => {
         t.error(err, "no error on remove");
-        blobs.createReadStream(opts).once("error", err => {
+        blobs.createReadStream(opts).once("error", (err) => {
           t.ok(err, "read should error");
           t.end();
         });

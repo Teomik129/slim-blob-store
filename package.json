@@ -22,6 +22,9 @@
   },
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
   "scripts": {
     "compile": "tsc",
     "prepare": "npm run compile",

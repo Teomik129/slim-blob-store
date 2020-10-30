@@ -9,7 +9,7 @@ Blob store that does the following:
 npm install slim-blob-store
 ```
 
-[![build status](http://img.shields.io/travis/Teomik129/slim-blob-store.svg?style=flat)](http://travis-ci.org/Teomik129/slim-blob-store)
+![Node.js CI](https://github.com/Teomik129/slim-blob-store/workflows/Node.js%20CI/badge.svg)
 
 [![blob-store-compatible](https://raw.githubusercontent.com/maxogden/abstract-blob-store/master/badge.png)](https://github.com/maxogden/abstract-blob-store)
 
